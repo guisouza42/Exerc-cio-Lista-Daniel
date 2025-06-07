@@ -1,0 +1,57 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Notas {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        List<Double> notas = new ArrayList<>();
+        double soma = 0;
+        int abaixoSete = 0;
+
+        while (true) {
+            System.out.print("Digite uma número (-1 para encerrar): ");
+            double nota = scanner.nextDouble();
+            if (nota == -1) {
+                break;
+            }
+            notas.add(nota);
+            soma += nota;
+            if (nota < 7) {
+                abaixoSete++;
+            }
+        }
+
+        if (notas.isEmpty()) {
+            System.out.println("Nenhuma nota foi informada.");
+            return;
+        }
+
+        int quantidade = notas.size();
+        double media = soma / quantidade;
+        int acimaMedia = 0;
+        for (double nota : notas) {
+            if (nota > media) {
+                acimaMedia++;
+            }
+        }
+
+        System.out.println("\nQuantidade de valores lidos: " + quantidade);
+        System.out.print("Notas na ordem em que foram informadas: ");
+        for (double nota : notas) {
+            System.out.print(nota + " ");
+        }
+        System.out.println();
+
+        System.out.print("Notas na ordem inversa: ");
+        for (int i = quantidade - 1; i >= 0; i--) {
+            System.out.print(notas.get(i) + " ");
+        }
+
+        System.out.println("\nSoma das notas: " + soma);
+        System.out.println("Média das notas: " + media);
+        System.out.println("Quantidade de notas acima da média: " + acimaMedia);
+        System.out.println("Quantidade de notas abaixo de sete: " + abaixoSete);
+        System.out.println("Programa encerrado.");
+    }
+}
