@@ -1,0 +1,43 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class ComissaoVendedores {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        List<Double> vendas = new ArrayList<>();
+        int[] faixas = new int[9]; 
+
+        while (true) {
+            System.out.print("Digite o valor das vendas brutas do vendedor (digite -1 para encerrar): ");
+            double vendasBrutas = scanner.nextDouble();
+            if (vendasBrutas == -1) {
+                break;
+            }
+            vendas.add(vendasBrutas);
+        }
+
+        for (double vendasBrutas : vendas) {
+            double salario = 200 + (vendasBrutas * 0.09);
+            int faixa = (int) (salario / 100); 
+            if (faixa >= 10) {
+                faixa = 8; 
+            }
+            faixas[faixa]++;
+        }
+
+        
+        System.out.println("\nFaixas salariais:");
+        System.out.println("$200 - $299: " + faixas[0] + " funcionários.");
+        System.out.println("$300 - $399: " + faixas[1] + " funcionários.");
+        System.out.println("$400 - $499: " + faixas[2] + " funcionários.");
+        System.out.println("$500 - $599: " + faixas[3] + " funcionários.");
+        System.out.println("$600 - $699: " + faixas[4] + " funcionários.");
+        System.out.println("$700 - $799: " + faixas[5] + " funcionários.");
+        System.out.println("$800 - $899: " + faixas[6] + " funcionários.");
+        System.out.println("$900 - $999: " + faixas[7] + " funcionários.");
+        System.out.println("$1000 em diante: " + faixas[8] + " funcionários.");
+
+        scanner.close();
+    }
+}
